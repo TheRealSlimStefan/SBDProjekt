@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    height: 10vh;
+    background-color: #212121;
+    width: 100%;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+
+nav ul li {
+    display: flex;
+    list-style-type: none;
+}
+
+nav ul li a {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    padding: 20px;
+    color: white;
+    letter-spacing: 1px;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+nav ul li a:hover {
+    color: #bbb;
+}

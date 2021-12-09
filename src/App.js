@@ -5,6 +5,7 @@ import Matches from "./components/Matches";
 import Scoreboard from "./components/Scoreboard";
 import Teams from "./components/Teams";
 import Statistics from "./components/Statistics";
+import Highlight from "./components/Highlight";
 import ErrorPage from "./components/ErrorPage";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/scoreboard" element={<Scoreboard />} />
                 <Route path="/teams" element={<Teams />} />
                 <Route path="/statistics" element={<Statistics />} />
+                <Route path="/highlight/:id" element={<Highlight />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </Router>

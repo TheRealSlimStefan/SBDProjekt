@@ -1,5 +1,19 @@
 import "../styles/Matches.css";
+import Match from "./Match";
 
-const Matches = () => <h1>Matches</h1>;
+const Matches = () => {
+    return (
+        <div className="Matches">
+            <Match />
+            <Match />
+            <Match />
+            <Match />
+            <Match />
+            <Match />
+            <Match />
+            <Match />
+        </div>
+    );
+};
 
 export default Matches;

@@ -1,0 +1,53 @@
+.Match {
+    width: 50%;
+    padding: 40px 50px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #212121;
+    border: 1px solid #666;
+    transition: 0.2s;
+}
+
+.Match:hover {
+    cursor: pointer;
+    background-color: #101010;
+}
+
+.Match:nth-child(2n) {
+    border-right: 2px solid #666;
+}
+
+.Match:nth-child(2n + 1) {
+    border-left: 2px solid #666;
+}
+
+.Match:nth-child(1) {
+    border-top: 2px solid #666;
+}
+
+.Match:nth-child(2) {
+    border-top: 2px solid #666;
+}
+
+.Match:nth-last-child(-n + 2) {
+    border-bottom: 2px solid #666;
+}
+
+.Match div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.Match div:nth-child(2) {
+    align-items: flex-end;
+}
+
+.Match div:nth-child(3) {
+    align-items: center;
+}
+
+.Match div p {
+    padding: 5px 10px;
+    color: white;
+}

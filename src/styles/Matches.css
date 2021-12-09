@@ -1,0 +1,6 @@
+.Matches {
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+}
