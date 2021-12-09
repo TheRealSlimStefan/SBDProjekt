@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-nav {
+.Navbar {
     display: flex;
     justify-content: center;
     height: 10vh;
@@ -11,18 +11,18 @@ nav {
     width: 100%;
 }
 
-nav ul {
+.Navbar ul {
     display: flex;
     justify-content: space-around;
     width: 80%;
 }
 
-nav ul li {
+.Navbar ul li {
     display: flex;
     list-style-type: none;
 }
 
-nav ul li a {
+.Navbar ul li a {
     display: flex;
     text-decoration: none;
     align-items: center;
@@ -33,6 +33,6 @@ nav ul li a {
     transition: 0.2s;
 }
 
-nav ul li a:hover {
+.Navbar ul li a:hover {
     color: #bbb;
 }
