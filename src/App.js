@@ -1,42 +1,23 @@
 import "./App.css";
-import {
-    BrowserRouter as Router,
-    NavLink,
-    Routes,
-    Route,
-} from "react-router-dom";
-
-const Home = () => <h1>Strona startowa</h1>;
-const News = () => <h1>Aktualności</h1>;
-const Contact = () => <h1>Kontakt</h1>;
-const ErrorPage = () => <h1>Strona nie istnieje</h1>;
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Matches from "./components/Matches";
+import Scoreboard from "./components/Scoreboard";
+import Teams from "./components/Teams";
+import Statistics from "./components/Statistics";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
     return (
         <Router>
-            <div>
-                <header>
-                    <ul>
-                        <li>
-                            <NavLink to="/">Start</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/news">Aktualności</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/contact">Kontakt</NavLink>
-                        </li>
-                    </ul>
-                </header>
-                <section>
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/news" element={<News />} />
-                        <Route path="/contact" element={<Contact />} />
-                        <Route path="*" element={<ErrorPage />} />
-                    </Routes>
-                </section>
-            </div>
+            <Navbar />
+            <Routes>
+                <Route path="/" element={<Matches />} />
+                <Route path="/scoreboard" element={<Scoreboard />} />
+                <Route path="/teams" element={<Teams />} />
+                <Route path="/statistics" element={<Statistics />} />
+                <Route path="*" element={<ErrorPage />} />
+            </Routes>
         </Router>
     );
 }
