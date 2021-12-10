@@ -23,3 +23,10 @@ code {
     flex-direction: column;
     align-items: center;
 }
+
+::-webkit-scrollbar {
+    background-color: #434343;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #747578;
+}

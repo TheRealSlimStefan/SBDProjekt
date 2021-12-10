@@ -5,26 +5,26 @@
     width: 100%;
 }
 
-.Highlight nav {
+.Highlight .backNavigation {
     display: flex;
     width: 100%;
     background-color: #434343;
     padding: 20px;
 }
 
-.Highlight nav div.teams {
+.Highlight .backNavigation .teams {
     display: flex;
     align-items: center;
     color: #eee;
     letter-spacing: 0.5px;
 }
 
-.Highlight nav div.backButton {
+.Highlight .backNavigation .backButton {
     padding: 0px 20px 0px 0px;
     cursor: pointer;
 }
 
-.Highlight nav div svg {
+.Highlight .backNavigation div svg {
     color: white;
     font-size: 20px;
 }
@@ -32,24 +32,25 @@
 .Highlight > div {
     /* margin: 50px 0 0 0; */
     width: 45%;
-    height: 800px;
     background-color: #212121;
 }
 
 .Highlight div.summary {
-    padding: 20px;
-    color: white;
+    /* padding: 20px; */
+    color: #ddd;
     font-size: 40px;
+    box-shadow: 0px 1px 3px white;
 }
 
 .Highlight div.summary .date {
     font-size: 20px;
+    padding: 20px;
 }
 
 .Highlight div.summary .score {
     display: flex;
     justify-content: space-around;
-    padding: 50px 0;
+    padding: 30px 0;
 }
 
 .Highlight div.summary .score div {
@@ -66,4 +67,59 @@
 
 .Highlight div.summary .score img {
     width: 50px;
+}
+
+.Highlight div.summary .score img {
+    width: 50px;
+}
+
+.Highlight .menuOptions {
+    display: flex;
+    margin-top: 10px;
+    font-size: 16px;
+    background-color: #303134;
+}
+
+.Highlight .menuOptions div {
+    padding: 20px 0;
+    width: 50%;
+    text-align: center;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: 0.2s;
+}
+
+.Highlight .menuOptions div:hover {
+    background-color: #323232;
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+.Highlight .menuOptions div:nth-child(1) {
+    border-right: 1px solid #212121;
+}
+
+.Highlight .menuOptions div:nth-child(2) {
+    border-left: 1px solid #212121;
+}
+
+.Highlight .statisticsOption {
+    font-size: 16px;
+    padding: 20px 0;
+}
+
+.Highlight .statisticsOption .statistic {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 0;
+}
+
+.Highlight .statisticsOption .statistic:nth-child(1) {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.Highlight .statisticsOption p {
+    width: 30%;
+    text-align: center;
 }
