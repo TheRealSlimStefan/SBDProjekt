@@ -35,3 +35,35 @@
     height: 800px;
     background-color: #212121;
 }
+
+.Highlight div.summary {
+    padding: 20px;
+    color: white;
+    font-size: 40px;
+}
+
+.Highlight div.summary .date {
+    font-size: 20px;
+}
+
+.Highlight div.summary .score {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 0;
+}
+
+.Highlight div.summary .score div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 16px;
+    width: 30%;
+}
+
+.Highlight div.summary .score div p {
+    padding: 10px 5px;
+}
+
+.Highlight div.summary .score img {
+    width: 50px;
+}
