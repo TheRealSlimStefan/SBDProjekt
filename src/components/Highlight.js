@@ -1,9 +1,33 @@
 import "../styles/Highlight.css";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Player from "./Player";
 
 const Highlight = () => {
     const navigate = useNavigate();
+    const [statistics, setStatistics] = useState(true);
+    const [squads, setSquads] = useState(false);
+    const [firstSquad, setFirstSquad] = useState(false);
+    const [secondSquad, setSecondSquad] = useState(false);
+
+    function handleOptionClick(option) {
+        if (option === "statistics") {
+            setStatistics(true);
+            setSquads(false);
+        } else if (option === "squads") {
+            setStatistics(false);
+            setSquads(true);
+        }
+    }
+
+    function handleSquadClick(squad) {
+        if (squad === "first") {
+            setFirstSquad(!firstSquad);
+        } else if (squad === "second") {
+            setSecondSquad(!secondSquad);
+        }
+    }
 
     function handleBackClick() {
         navigate(`/`);
@@ -43,67 +67,270 @@ const Highlight = () => {
                     </div>
                 </div>
                 <nav className="menuOptions">
-                    <div className="statistics">STATYSTYKI</div>
-                    <div className="squads">SKŁADY</div>
+                    <div
+                        className="statistics"
+                        onClick={() => handleOptionClick("statistics")}
+                    >
+                        STATYSTYKI
+                    </div>
+                    <div
+                        className="squads"
+                        onClick={() => handleOptionClick("squads")}
+                    >
+                        SKŁADY
+                    </div>
                 </nav>
-                <div className="statisticsOption">
-                    <div className="statistic">
-                        <p>Jagiellonia</p>
-                        <p>Statystyki</p>
-                        <p>Legia</p>
+                {statistics ? (
+                    <div className="statisticsOption">
+                        <div className="statistic">
+                            <p>Jagiellonia</p>
+                            <p>Statystyki</p>
+                            <p>Legia</p>
+                        </div>
+                        <div className="statistic">
+                            <p>15</p>
+                            <p>Strzały</p>
+                            <p>9</p>
+                        </div>
+                        <div className="statistic">
+                            <p>4</p>
+                            <p>Strzały na bramkę</p>
+                            <p>6</p>
+                        </div>
+                        <div className="statistic">
+                            <p>32%</p>
+                            <p>Posiadanie piłki</p>
+                            <p>68%</p>
+                        </div>
+                        <div className="statistic">
+                            <p>297</p>
+                            <p>Podania</p>
+                            <p>610</p>
+                        </div>
+                        <div className="statistic">
+                            <p>62%</p>
+                            <p>Celność podań</p>
+                            <p>79%</p>
+                        </div>
+                        <div className="statistic">
+                            <p>10</p>
+                            <p>Faule</p>
+                            <p>7</p>
+                        </div>
+                        <div className="statistic">
+                            <p>0</p>
+                            <p>Żółte kartki</p>
+                            <p>0</p>
+                        </div>
+                        <div className="statistic">
+                            <p>0</p>
+                            <p>Czerwone kartki</p>
+                            <p>0</p>
+                        </div>
+                        <div className="statistic">
+                            <p>2</p>
+                            <p>Spalone</p>
+                            <p>2</p>
+                        </div>
+                        <div className="statistic">
+                            <p>5</p>
+                            <p>Rzuty rożne</p>
+                            <p>4</p>
+                        </div>
                     </div>
-                    <div className="statistic">
-                        <p>15</p>
-                        <p>Strzały</p>
-                        <p>9</p>
+                ) : null}
+                {squads ? (
+                    <div className="squadsOption">
+                        <div
+                            className="firstSquadButton"
+                            onClick={() => handleSquadClick("first")}
+                        >
+                            Jagiellonia Białystok
+                        </div>
+                        {firstSquad ? (
+                            <div>
+                                <Player
+                                    name={"Przemysław"}
+                                    surname={"Frankowski"}
+                                    image={
+                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Przemysław"}
+                                    surname={"Frankowski"}
+                                    image={
+                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Przemysław"}
+                                    surname={"Frankowski"}
+                                    image={
+                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Przemysław"}
+                                    surname={"Frankowski"}
+                                    image={
+                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Przemysław"}
+                                    surname={"Frankowski"}
+                                    image={
+                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Przemysław"}
+                                    surname={"Frankowski"}
+                                    image={
+                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Przemysław"}
+                                    surname={"Frankowski"}
+                                    image={
+                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Przemysław"}
+                                    surname={"Frankowski"}
+                                    image={
+                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Przemysław"}
+                                    surname={"Frankowski"}
+                                    image={
+                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Przemysław"}
+                                    surname={"Frankowski"}
+                                    image={
+                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Przemysław"}
+                                    surname={"Frankowski"}
+                                    image={
+                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Przemysław"}
+                                    surname={"Frankowski"}
+                                    image={
+                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
+                                    }
+                                />
+                            </div>
+                        ) : null}
+                        <div
+                            className="secondSquadButton"
+                            onClick={() => handleSquadClick("second")}
+                        >
+                            Legia Warszawa
+                        </div>
+                        {secondSquad ? (
+                            <div>
+                                <Player
+                                    name={"Mateusz"}
+                                    surname={"Hołownia"}
+                                    image={
+                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Mateusz"}
+                                    surname={"Hołownia"}
+                                    image={
+                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Mateusz"}
+                                    surname={"Hołownia"}
+                                    image={
+                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Mateusz"}
+                                    surname={"Hołownia"}
+                                    image={
+                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Mateusz"}
+                                    surname={"Hołownia"}
+                                    image={
+                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Mateusz"}
+                                    surname={"Hołownia"}
+                                    image={
+                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Mateusz"}
+                                    surname={"Hołownia"}
+                                    image={
+                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Mateusz"}
+                                    surname={"Hołownia"}
+                                    image={
+                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Mateusz"}
+                                    surname={"Hołownia"}
+                                    image={
+                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Mateusz"}
+                                    surname={"Hołownia"}
+                                    image={
+                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Mateusz"}
+                                    surname={"Hołownia"}
+                                    image={
+                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
+                                    }
+                                />
+                                <Player
+                                    name={"Mateusz"}
+                                    surname={"Hołownia"}
+                                    image={
+                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
+                                    }
+                                />
+                            </div>
+                        ) : null}
                     </div>
-                    <div className="statistic">
-                        <p>4</p>
-                        <p>Strzały na bramkę</p>
-                        <p>6</p>
-                    </div>
-                    <div className="statistic">
-                        <p>32%</p>
-                        <p>Posiadanie piłki</p>
-                        <p>68%</p>
-                    </div>
-                    <div className="statistic">
-                        <p>297</p>
-                        <p>Podania</p>
-                        <p>610</p>
-                    </div>
-                    <div className="statistic">
-                        <p>62%</p>
-                        <p>Celność podań</p>
-                        <p>79%</p>
-                    </div>
-                    <div className="statistic">
-                        <p>10</p>
-                        <p>Faule</p>
-                        <p>7</p>
-                    </div>
-                    <div className="statistic">
-                        <p>0</p>
-                        <p>Żółte kartki</p>
-                        <p>0</p>
-                    </div>
-                    <div className="statistic">
-                        <p>0</p>
-                        <p>Czerwone kartki</p>
-                        <p>0</p>
-                    </div>
-                    <div className="statistic">
-                        <p>2</p>
-                        <p>Spalone</p>
-                        <p>2</p>
-                    </div>
-                    <div className="statistic">
-                        <p>5</p>
-                        <p>Rzuty rożne</p>
-                        <p>4</p>
-                    </div>
-                </div>
-                <div className="squadsOption"></div>
+                ) : null}
             </div>
         </div>
     );

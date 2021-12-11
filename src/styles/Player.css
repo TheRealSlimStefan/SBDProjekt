@@ -1,0 +1,15 @@
+.Player {
+    display: flex;
+    padding: 15px 0;
+}
+
+.Player img {
+    width: 50px;
+    border-radius: 10px;
+}
+
+.Player p {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+}
