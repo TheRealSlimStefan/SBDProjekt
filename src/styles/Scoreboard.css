@@ -1,0 +1,22 @@
+.Scoreboard {
+    padding: 50px;
+    width: 80%;
+}
+
+.Scoreboard table {
+    border-collapse: collapse;
+    text-align: center;
+    color: white;
+    width: 100%;
+    background-color: #212121;
+}
+
+.scoreboardRow:hover {
+    cursor: pointer;
+    background-color: #101010;
+}
+
+.Scoreboard th, td {
+    border: 2px solid #666;
+    padding: 5px;
+}
