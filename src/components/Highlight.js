@@ -2,7 +2,123 @@ import "../styles/Highlight.css";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Player from "./Player";
+import PlayerElement from "./PlayerElement";
+
+const playersJagiellonia = [
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
+    },
+];
+
+const playersLegia = [
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
+    },
+    {
+        name: "Przemysław",
+        surname: "Frankowski",
+        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
+    },
+];
 
 const Highlight = () => {
     const navigate = useNavigate();
@@ -149,90 +265,14 @@ const Highlight = () => {
                         </div>
                         {firstSquad ? (
                             <div>
-                                <Player
-                                    name={"Przemysław"}
-                                    surname={"Frankowski"}
-                                    image={
-                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Przemysław"}
-                                    surname={"Frankowski"}
-                                    image={
-                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Przemysław"}
-                                    surname={"Frankowski"}
-                                    image={
-                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Przemysław"}
-                                    surname={"Frankowski"}
-                                    image={
-                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Przemysław"}
-                                    surname={"Frankowski"}
-                                    image={
-                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Przemysław"}
-                                    surname={"Frankowski"}
-                                    image={
-                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Przemysław"}
-                                    surname={"Frankowski"}
-                                    image={
-                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Przemysław"}
-                                    surname={"Frankowski"}
-                                    image={
-                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Przemysław"}
-                                    surname={"Frankowski"}
-                                    image={
-                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Przemysław"}
-                                    surname={"Frankowski"}
-                                    image={
-                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Przemysław"}
-                                    surname={"Frankowski"}
-                                    image={
-                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Przemysław"}
-                                    surname={"Frankowski"}
-                                    image={
-                                        "https://cdn.sofifa.net/players/212/138/18_360.png"
-                                    }
-                                />
+                                {playersJagiellonia.map((player) => (
+                                    <PlayerElement
+                                        name={player.name}
+                                        surname={player.surname}
+                                        image={player.image}
+                                        from={"highlight"}
+                                    />
+                                ))}
                             </div>
                         ) : null}
                         <div
@@ -243,90 +283,13 @@ const Highlight = () => {
                         </div>
                         {secondSquad ? (
                             <div>
-                                <Player
-                                    name={"Mateusz"}
-                                    surname={"Hołownia"}
-                                    image={
-                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Mateusz"}
-                                    surname={"Hołownia"}
-                                    image={
-                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Mateusz"}
-                                    surname={"Hołownia"}
-                                    image={
-                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Mateusz"}
-                                    surname={"Hołownia"}
-                                    image={
-                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Mateusz"}
-                                    surname={"Hołownia"}
-                                    image={
-                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Mateusz"}
-                                    surname={"Hołownia"}
-                                    image={
-                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Mateusz"}
-                                    surname={"Hołownia"}
-                                    image={
-                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Mateusz"}
-                                    surname={"Hołownia"}
-                                    image={
-                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Mateusz"}
-                                    surname={"Hołownia"}
-                                    image={
-                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Mateusz"}
-                                    surname={"Hołownia"}
-                                    image={
-                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Mateusz"}
-                                    surname={"Hołownia"}
-                                    image={
-                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
-                                    }
-                                />
-                                <Player
-                                    name={"Mateusz"}
-                                    surname={"Hołownia"}
-                                    image={
-                                        "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png"
-                                    }
-                                />
+                                {playersLegia.map((player) => (
+                                    <PlayerElement
+                                        name={player.name}
+                                        surname={player.surname}
+                                        image={player.image}
+                                    />
+                                ))}
                             </div>
                         ) : null}
                     </div>

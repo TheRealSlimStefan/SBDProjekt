@@ -52,7 +52,6 @@ const teams = [
         name: "Legia Warszawa",
     },
 
-
     {
         id: 5,
         name: "Legia Warszawa",
@@ -62,20 +61,23 @@ const teams = [
         id: 5,
         name: "Legia Warszawa",
     },
-]
+];
 
 const Teams = () => {
     const navigate = useNavigate();
 
     function handleTeamClick(id) {
-        navigate(`/team/${id}`, { state: { id: id }});
+        navigate(`/team/${id}`, { state: { id: id } });
     }
 
     return (
         <div className="TeamsList">
             {teams.map((team, key) => {
                 return (
-                    <div className="teamElement" onClick={() => handleTeamClick(team.id)}>
+                    <div
+                        className="teamElement"
+                        onClick={() => handleTeamClick(team.id)}
+                    >
                         <img
                             src="https://jagiellonia.pl/wp-content/uploads/2021/11/Herb_Jagiellonii.png"
                             alt=""
@@ -84,10 +86,10 @@ const Teams = () => {
                             <p>{team.name}</p>
                         </div>
                     </div>
-                )
+                );
             })}
         </div>
-    )
-}
+    );
+};
 
 export default Teams;

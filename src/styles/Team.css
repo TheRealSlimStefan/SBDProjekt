@@ -1,0 +1,40 @@
+.Team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.Team .backNavigation {
+    display: flex;
+    width: 100%;
+    background-color: #434343;
+    padding: 20px;
+}
+
+.Team .backNavigation .team {
+    display: flex;
+    align-items: center;
+    color: #eee;
+    letter-spacing: 0.5px;
+}
+
+.Team .backNavigation .backButton {
+    padding: 0px 20px 0px 0px;
+    cursor: pointer;
+}
+
+.Team .backNavigation div svg {
+    color: white;
+    font-size: 20px;
+}
+
+.Team .teamElements {
+    width: 80%;
+    padding: 50px;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

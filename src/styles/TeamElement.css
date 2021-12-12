@@ -1,0 +1,24 @@
+.TeamElement {
+    width: 15%;
+    background-color: #212121;
+    border: 1px solid #666;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: white;
+}
+
+.TeamElement:hover {
+    cursor: pointer;
+    background-color: #101010;
+    transition: 0.2s;
+}
+
+.TeamElement .teamName {
+    padding: 10px 0;
+}
+
+.TeamElement img {
+    width: 90%;
+}
