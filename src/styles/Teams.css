@@ -1,0 +1,33 @@
+.TeamsList {
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    justify-content: center;
+}
+
+.TeamsList .teamElement {
+    width: 20%;
+    background-color: #212121;
+    border: 1px solid #666;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: white;   
+}
+
+.TeamsList .teamElement:hover {
+    cursor: pointer;
+    background-color: #101010;
+    transition: 0.2s;
+}
+
+.TeamsList .teamName {
+    padding-bottom: 10px;
+}
+
+.TeamsList img {
+    max-width: 90%;
+    height: auto;
+}
