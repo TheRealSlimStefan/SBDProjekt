@@ -41,7 +41,7 @@ const scorers = [
         image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
         goals: 4,
     },
-]
+];
 
 const assisters = [
     {
@@ -83,7 +83,7 @@ const assisters = [
         image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
         assists: 4,
     },
-]
+];
 
 const yellowCards = [
     {
@@ -109,7 +109,7 @@ const yellowCards = [
         image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
         yellowCards: 7,
     },
-    
+
     {
         id: 2,
         name: "imie2",
@@ -141,7 +141,7 @@ const yellowCards = [
         image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
         yellowCards: 2,
     },
-]
+];
 
 const redCards = [
     {
@@ -199,7 +199,7 @@ const redCards = [
         image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
         redCards: 1,
     },
-]
+];
 
 const players = [
     {
@@ -311,7 +311,7 @@ const players = [
         yellowCards: 7,
         redCards: 5,
     },
-]
+];
 
 const Statistics = () => {
     const navigate = useNavigate();
@@ -323,7 +323,7 @@ const Statistics = () => {
     return (
         <div className="Statistics">
             <p>Gole</p>
-            {/* <table>
+            <table>
                 <tr>
                     <th>#</th>
                     <th>Zawodnik</th>
@@ -331,12 +331,19 @@ const Statistics = () => {
                 </tr>
                 {scorers.map((player, key) => {
                     return (
-                        <tr className="statisticsElement" onClick={() => handleStatisticsElementClick(player.id)}>
+                        <tr
+                            className="statisticsElement"
+                            onClick={() =>
+                                handleStatisticsElementClick(player.id)
+                            }
+                        >
                             <td class="statisticsPosition">{key + 1}</td>
-                            <td class="statisticsName">{player.name + " " + player.surname}</td>
+                            <td class="statisticsName">
+                                {player.name + " " + player.surname}
+                            </td>
                             <td class="statisticsValue">{player.goals}</td>
                         </tr>
-                    )
+                    );
                 })}
             </table>
 
@@ -349,12 +356,19 @@ const Statistics = () => {
                 </tr>
                 {assisters.map((player, key) => {
                     return (
-                        <tr className="statisticsElement" onClick={() => handleStatisticsElementClick(player.id)}>
+                        <tr
+                            className="statisticsElement"
+                            onClick={() =>
+                                handleStatisticsElementClick(player.id)
+                            }
+                        >
                             <td class="statisticsPosition">{key + 1}</td>
-                            <td class="statisticsName">{player.name + " " + player.surname}</td>
+                            <td class="statisticsName">
+                                {player.name + " " + player.surname}
+                            </td>
                             <td class="statisticsValue">{player.assists}</td>
                         </tr>
-                    )
+                    );
                 })}
             </table>
 
@@ -367,12 +381,21 @@ const Statistics = () => {
                 </tr>
                 {yellowCards.map((player, key) => {
                     return (
-                        <tr className="statisticsElement" onClick={() => handleStatisticsElementClick(player.id)}>
+                        <tr
+                            className="statisticsElement"
+                            onClick={() =>
+                                handleStatisticsElementClick(player.id)
+                            }
+                        >
                             <td class="statisticsPosition">{key + 1}</td>
-                            <td class="statisticsName">{player.name + " " + player.surname}</td>
-                            <td class="statisticsValue">{player.yellowCards}</td>
+                            <td class="statisticsName">
+                                {player.name + " " + player.surname}
+                            </td>
+                            <td class="statisticsValue">
+                                {player.yellowCards}
+                            </td>
                         </tr>
-                    )
+                    );
                 })}
             </table>
 
@@ -385,16 +408,23 @@ const Statistics = () => {
                 </tr>
                 {redCards.map((player, key) => {
                     return (
-                        <tr className="statisticsElement" onClick={() => handleStatisticsElementClick(player.id)}>
+                        <tr
+                            className="statisticsElement"
+                            onClick={() =>
+                                handleStatisticsElementClick(player.id)
+                            }
+                        >
                             <td class="statisticsPosition">{key + 1}</td>
-                            <td class="statisticsName">{player.name + " " + player.surname}</td>
+                            <td class="statisticsName">
+                                {player.name + " " + player.surname}
+                            </td>
                             <td class="statisticsValue">{player.redCards}</td>
                         </tr>
-                    )
+                    );
                 })}
-            </table> */}
+            </table>
         </div>
-    )
-}
+    );
+};
 
 export default Statistics;
