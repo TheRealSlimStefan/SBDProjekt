@@ -13,6 +13,11 @@ const Admin = () => {
     const [yellowCards, setYellowCards] = useState("");
     const [redCards, setRedCards] = useState("");
 
+    const [soccerClubName, setSoccerClubName] = useState("");
+    const [winnings, setWinnings] = useState("");
+    const [draws, setDraws] = useState("");
+    const [loses, setLoses] = useState("");
+
     function handleNameChange(e) {
         setName(e.target.value);
     }
@@ -53,6 +58,22 @@ const Admin = () => {
         setRedCards(e.target.value);
     }
 
+    function handleSoccerClubNameChange(e) {
+        setSoccerClubName(e.target.value);
+    }
+
+    function handleWinningsChange(e) {
+        setWinnings(e.target.value);
+    }
+
+    function handleDrawsChange(e) {
+        setDraws(e.target.value);
+    }
+
+    function handleLosesChange(e) {
+        setLoses(e.target.value);
+    }
+
     function addPlayer() {
         const player = {
             name,
@@ -74,6 +95,30 @@ const Admin = () => {
                 Accept: "application/json",
             },
             body: JSON.stringify(player),
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    }
+
+    function addSoccerClub() {
+        const soccerClub = {
+            soccerClubName,
+            winnings,
+            draws,
+            loses,
+        };
+
+        fetch("/", {
+            method: "POST", // or 'PUT'
+            headers: {
+                "content-type": "application/json",
+                Accept: "application/json",
+            },
+            body: JSON.stringify(soccerClub),
         })
             .then((response) => {
                 return response.json();
@@ -146,6 +191,33 @@ const Admin = () => {
                     value={redCards}
                     type="number"
                     placeholder="czerwone karki..."
+                />
+            </div>
+            <div className="soccerClub">
+                <button onClick={() => addSoccerClub()}>Dodaj klub</button>
+                <input
+                    onChange={(e) => handleSoccerClubNameChange(e)}
+                    value={soccerClubName}
+                    type="text"
+                    placeholder="nazwa klubu..."
+                />
+                <input
+                    onChange={(e) => handleWinningsChange(e)}
+                    value={winnings}
+                    type="text"
+                    placeholder="wygrane..."
+                />
+                <input
+                    onChange={(e) => handleDrawsChange(e)}
+                    value={draws}
+                    type="text"
+                    placeholder="remisy..."
+                />
+                <input
+                    onChange={(e) => handleLosesChange(e)}
+                    value={loses}
+                    type="text"
+                    placeholder="przegrane..."
                 />
             </div>
         </div>
