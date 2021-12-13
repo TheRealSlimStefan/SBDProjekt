@@ -8,6 +8,7 @@ import Statistics from "./components/Statistics";
 import Highlight from "./components/Highlight";
 import ErrorPage from "./components/ErrorPage";
 import Team from "./components/Team";
+import Player from "./components/Player";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                 <Route path="/scoreboard" element={<Scoreboard />} />
                 <Route path="/teams" element={<Teams />} />
                 <Route path="/team/:id" element={<Team />} />
+                <Route path="/player/:id" element={<Player />} />
                 <Route path="/statistics" element={<Statistics />} />
                 <Route path="/highlight/:id" element={<Highlight />} />
                 <Route path="*" element={<ErrorPage />} />

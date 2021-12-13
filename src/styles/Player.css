@@ -1,15 +1,75 @@
-/* .Player {
+.Player {
     display: flex;
-    padding: 15px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
 }
 
-.Player img {
-    width: 50px;
-    border-radius: 10px;
+.Player .backNavigation {
+    display: flex;
+    width: 100%;
+    background-color: #434343;
+    padding: 20px;
 }
 
-.Player p {
+.Player .backNavigation .player {
     display: flex;
-    padding: 10px;
     align-items: center;
-} */
+    color: #eee;
+    letter-spacing: 0.5px;
+}
+
+.Player .backNavigation .backButton {
+    padding: 0px 20px 0px 0px;
+    cursor: pointer;
+}
+
+.Player .backNavigation div svg {
+    color: white;
+    font-size: 20px;
+}
+
+.Player > div {
+    /* margin: 50px 0 0 0; */
+    width: 45%;
+    background-color: #212121;
+}
+
+.Player .playerDetails {
+    margin-top: 50px;
+    width: 80%;
+    display: flex;
+    box-shadow: 0px 0px 3px white;
+}
+
+.Player .playerDetails img {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Player .playerDetails .description {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.Player .playerDetails .name p {
+    color: white;
+    font-size: 40px;
+}
+
+.Player .playerDetails .statistics {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 50px;
+}
+
+.Player .playerDetails .statistics p {
+    color: white;
+    padding: 2px 0;
+}
