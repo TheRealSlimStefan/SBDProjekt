@@ -9,6 +9,7 @@ import Highlight from "./components/Highlight";
 import ErrorPage from "./components/ErrorPage";
 import Team from "./components/Team";
 import Player from "./components/Player";
+import Admin from "./components/Admin";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
             <Navbar />
             <Routes>
                 <Route path="/" element={<Matches />} />
+                <Route path="/admin" element={<Admin />} />
                 <Route path="/scoreboard" element={<Scoreboard />} />
                 <Route path="/teams" element={<Teams />} />
                 <Route path="/team/:id" element={<Team />} />
