@@ -1,0 +1,40 @@
+.Statistics {
+    padding: 50px;
+    width: 40%;
+}
+
+.Statistics p {
+    color: white;
+}
+
+.Statistics .statisticsPosition {
+    width: 5%;
+}
+
+.Statistics .statisticsName {
+    width: 75%;
+    text-align: left;
+}
+
+.Statistics .statisticsValue {
+    width: 20%;
+}
+
+.Statistics table {
+    border-collapse: collapse;
+    text-align: center;
+    color: white;
+    width: 100%;
+    background-color: #212121;
+}
+
+.statisticsElement:hover {
+    cursor: pointer;
+    background-color: #101010;
+    transition: 0.2s;
+}
+
+.Statistics th, td {
+    border: 2px solid #666;
+    padding: 20px;
+}
