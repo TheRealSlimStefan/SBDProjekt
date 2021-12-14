@@ -23,7 +23,7 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-    async function getEmployee(empId) {
+    async function getEmployee() {
         let conn;
 
         try {
@@ -31,6 +31,7 @@ app.get("/", (req, res) => {
 
             const result = await conn.execute("select * from pracownicy");
 
+            console.log(result.rows);
             res.send(result.rows);
         } catch (err) {
             console.log("Ouch!", err);
