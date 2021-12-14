@@ -46,6 +46,39 @@ app.get("/", (req, res) => {
     getEmployee();
 });
 
+app.post("/admin", (req, res) => {
+    console.log(req.body);
+    async function getEmployee() {
+        let conn;
+
+        try {
+            conn = await oracledb.getConnection(config);
+
+            console.log(req.body.name);
+            console.log(req.body.surname);
+
+            await conn.execute(
+                `INSERT INTO pracownicy (imie, nazwisko)
+                VALUES ('${req.body.name}', '${req.body.surname}')`,
+                [],
+                { autoCommit: true }
+            );
+
+            // INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+            // VALUES ('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway');
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (conn) {
+                // conn assignment worked, need to close
+                await conn.close();
+            }
+        }
+    }
+
+    getEmployee();
+});
+
 app.listen(3001, () => console.log("Server address http://localhost:3001"));
 
 // app.get("/", (req, res) => {

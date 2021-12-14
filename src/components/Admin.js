@@ -88,7 +88,7 @@ const Admin = () => {
             redCards,
         };
 
-        fetch("/", {
+        fetch("http://localhost:3001/admin", {
             method: "POST", // or 'PUT'
             headers: {
                 "content-type": "application/json",
@@ -96,9 +96,7 @@ const Admin = () => {
             },
             body: JSON.stringify(player),
         })
-            .then((response) => {
-                return response.json();
-            })
+            .then((response) => response.json())
             .catch((error) => {
                 console.error("Error:", error);
             });
