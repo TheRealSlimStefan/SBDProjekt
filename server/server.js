@@ -22,28 +22,27 @@ app.use(
     })
 );
 
-app.get("/", (req, res) => {
-    async function getEmployee() {
-        let conn;
+app.get("/teams", (req, res) => {
+    async function getTeams() {
+        let db;
 
         try {
-            conn = await oracledb.getConnection(config);
+            db = await oracledb.getConnection(config);
 
-            const result = await conn.execute("select * from pracownicy");
+            const result = await db.execute("select * from Football_Club");
 
-            console.log(result.rows);
             res.send(result.rows);
         } catch (err) {
             console.log("Ouch!", err);
         } finally {
-            if (conn) {
+            if (db) {
                 // conn assignment worked, need to close
-                await conn.close();
+                await db.close();
             }
         }
     }
 
-    getEmployee();
+    getTeams();
 });
 
 app.post("/admin", (req, res) => {
