@@ -18,7 +18,7 @@ const Admin = () => {
     const [soccerClubName, setSoccerClubName] = useState("");
     const [winnings, setWinnings] = useState("");
     const [draws, setDraws] = useState("");
-    const [loses, setLoses] = useState("");
+    const [losses, setLosses] = useState("");
 
     function handleClubIdChange(e) {
         setClubId(e.target.value);
@@ -80,8 +80,8 @@ const Admin = () => {
         setDraws(e.target.value);
     }
 
-    function handleLosesChange(e) {
-        setLoses(e.target.value);
+    function handleLossesChange(e) {
+        setLosses(e.target.value);
     }
 
     function addPlayer() {
@@ -119,10 +119,10 @@ const Admin = () => {
             soccerClubName,
             winnings,
             draws,
-            loses,
+            losses,
         };
 
-        fetch("/", {
+        fetch("http://localhost:3001/addClub", {
             method: "POST", // or 'PUT'
             headers: {
                 "content-type": "application/json",
@@ -236,8 +236,8 @@ const Admin = () => {
                     placeholder="remisy..."
                 />
                 <input
-                    onChange={(e) => handleLosesChange(e)}
-                    value={loses}
+                    onChange={(e) => handleLossesChange(e)}
+                    value={losses}
                     type="text"
                     placeholder="przegrane..."
                 />

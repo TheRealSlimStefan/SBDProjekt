@@ -46,7 +46,7 @@ app.get("/teams", (req, res) => {
 
 app.post("/addPlayer", (req, res) => {
     console.log(req.body);
-    async function getEmployee() {
+    async function addPlayer() {
         let conn;
 
         try {
@@ -87,7 +87,45 @@ app.post("/addPlayer", (req, res) => {
         }
     }
 
-    getEmployee();
+    addPlayer();
+});
+
+app.post("/addClub", (req, res) => {
+    console.log(req.body);
+    async function addClub() {
+        let conn;
+
+        try {
+            conn = await oracledb.getConnection(config);
+
+            let randomId = Math.floor(Math.random() * (100000 - 200 + 1)) + 200;
+
+            console.log(req.body);
+            console.log(randomId);
+            console.log(req.body.soccerClubName);
+            console.log(req.body.winnings);
+            console.log(req.body.draws);
+            console.log(req.body.losses);
+
+            await conn.execute(
+                `INSERT INTO Football_Club VALUES (${randomId}, '${req.body.soccerClubName}', ${req.body.winnings}, ${req.body.draws}, ${req.body.losses})`,
+                [],
+                { autoCommit: true }
+            );
+
+            // INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+            // VALUES ('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway');
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (conn) {
+                // conn assignment worked, need to close
+                await conn.close();
+            }
+        }
+    }
+
+    addClub();
 });
 
 app.listen(3001, () => console.log("Server address http://localhost:3001"));
