@@ -19,7 +19,7 @@ const Player = () => {
             const response = await fetch(`http://localhost:3001/player/${id}`);
             const body = await response.json();
             setPlayer(body);
-            console.log(body);
+            // console.log(body);
             setLoaded(true);
         };
         fetchData();

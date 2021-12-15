@@ -34,7 +34,8 @@
     transition: 0.2s;
 }
 
-.Statistics th, td {
+.Statistics th,
+td {
     border: 2px solid #666;
     padding: 20px;
 }

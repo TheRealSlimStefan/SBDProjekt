@@ -21,6 +21,36 @@ app.use(
     })
 );
 
+app.get("/", (req, res) => {
+    async function getTeam() {
+        let db;
+
+        try {
+            db = await oracledb.getConnection(config);
+
+            const result = await db.execute(
+                `select game.ID_match game, host.club_name host, goals_host, guest.club_name guest, goals_guest
+                from Football_Match game, Football_Club host, Football_Club guest, Match_Statistics statistics
+                where game.ID_home_club = host.id_club 
+                and game.ID_away_club = guest.id_club
+                and game.ID_match = statistics.ID_match`
+            );
+
+            console.log(result);
+            res.send(result.rows);
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (db) {
+                // conn assignment worked, need to close
+                await db.close();
+            }
+        }
+    }
+
+    getTeam();
+});
+
 app.get("/teams", (req, res) => {
     async function getTeams() {
         let db;
@@ -42,6 +72,96 @@ app.get("/teams", (req, res) => {
     }
 
     getTeams();
+});
+
+app.get("/highlight/:id/playersHost", (req, res) => {
+    async function getHighlightPlayers() {
+        let db;
+
+        try {
+            db = await oracledb.getConnection(config);
+
+            const result = await db.execute(`select game.ID_match game
+            , host.club_name host, hostPlayers.ID_player, hostPlayers.player_name, hostPlayers.player_surname
+            FROM Football_Match game, Football_Club host, Player hostPlayers
+            where game.ID_home_club = host.id_club 
+            and host.ID_club = hostPlayers.ID_club
+            and game.ID_match = ${req.params.id}`);
+
+            console.log(result);
+            res.send(result.rows);
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (db) {
+                // conn assignment worked, need to close
+                await db.close();
+            }
+        }
+    }
+
+    getHighlightPlayers();
+});
+
+app.get("/highlight/:id/playersGuest", (req, res) => {
+    async function getHighlightPlayers() {
+        let db;
+
+        try {
+            db = await oracledb.getConnection(config);
+
+            const result = await db.execute(`select game.ID_match game
+            , guest.club_name guest, guestPlayers.ID_player, guestPlayers.player_name, guestPlayers.player_surname
+            FROM Football_Match game, Football_Club guest, Player guestPlayers
+            where game.ID_away_club = guest.id_club 
+            and guest.ID_club = guestPlayers.ID_club
+            and game.ID_match = ${req.params.id}`);
+
+            console.log(result);
+            res.send(result.rows);
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (db) {
+                // conn assignment worked, need to close
+                await db.close();
+            }
+        }
+    }
+
+    getHighlightPlayers();
+});
+
+app.get("/highlight/:id", (req, res) => {
+    console.log(req.params.id);
+    async function getHighlight() {
+        let db;
+
+        try {
+            db = await oracledb.getConnection(config);
+
+            const result = await db.execute(
+                `select game.ID_match game, host.club_name host, goals_host, shots_host, possession_host, passes_host, guest.club_name guest, goals_guest, shots_guest, possession_guest, passes_guest
+                from Football_Match game, Football_Club host, Football_Club guest, Match_Statistics statistics
+                where game.ID_home_club = host.id_club 
+                and game.ID_away_club = guest.id_club
+                and game.ID_match = statistics.ID_match
+                and game.ID_match = ${req.params.id}`
+            );
+
+            console.log(result);
+            res.send(result.rows);
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (db) {
+                // conn assignment worked, need to close
+                await db.close();
+            }
+        }
+    }
+
+    getHighlight();
 });
 
 app.get("/team/:id", (req, res) => {

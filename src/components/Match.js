@@ -1,7 +1,7 @@
 import "../styles/Match.css";
 import { useNavigate } from "react-router-dom";
 
-const Match = () => {
+const Match = ({ id, host, hostGoals, guest, guestGoals }) => {
     const navigate = useNavigate();
 
     function handleMatchClick(id) {
@@ -9,14 +9,14 @@ const Match = () => {
     }
 
     return (
-        <div className="Match" onClick={() => handleMatchClick(1)}>
+        <div className="Match" onClick={() => handleMatchClick(id)}>
             <div className="teams">
-                <p>Jagielonia Białystok</p>
-                <p>Legia Warszawa</p>
+                <p>{host}</p>
+                <p>{guest}</p>
             </div>
             <div className="score">
-                <p>1</p>
-                <p>0</p>
+                <p>{hostGoals}</p>
+                <p>{guestGoals}</p>
             </div>
             <div className="date">
                 <p>Koniec</p>

@@ -1,131 +1,28 @@
 import "../styles/Highlight.css";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import PlayerElement from "./PlayerElement";
-
-const playersJagiellonia = [
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-];
-
-const playersLegia = [
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-    },
-];
 
 const Highlight = () => {
     const navigate = useNavigate();
+    const { id } = useParams();
+
+    const [highlight, setHighlight] = useState([]);
+    const [loaded, setLoaded] = useState(false);
+    const [playersHost, setPlayersHost] = useState([]);
+    // const [loadedHost, setLoadedHost] = useState(false);
+    const [playersGuest, setPlayersGuest] = useState([]);
+    // const [loadedGuest, setLoadedGuest] = useState(false);
+
     const [statistics, setStatistics] = useState(true);
     const [squads, setSquads] = useState(false);
     const [firstSquad, setFirstSquad] = useState(false);
     const [secondSquad, setSecondSquad] = useState(false);
+
+    function handleBackClick() {
+        navigate(`/`);
+    }
 
     function handleOptionClick(option) {
         if (option === "statistics") {
@@ -145,156 +42,164 @@ const Highlight = () => {
         }
     }
 
-    function handleBackClick() {
-        navigate(`/`);
-    }
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(
+                `http://localhost:3001/highlight/${id}`
+            );
+            const body = await response.json();
+            setHighlight(body);
+            // console.log(body);
+            setLoaded(true);
+        };
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(
+                `http://localhost:3001/highlight/${id}/playersHost`
+            );
+            const body = await response.json();
+            setPlayersHost(body);
+            // console.log(body);
+            setLoadedHost(true);
+        };
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(
+                `http://localhost:3001/highlight/${id}/playersGuest`
+            );
+            const body = await response.json();
+            setPlayersGuest(body);
+            // console.log(body);
+            setLoadedGuest(true);
+        };
+        fetchData();
+    }, []);
 
     return (
         <div className="Highlight">
-            <nav className="backNavigation">
-                <div className="backButton" onClick={() => handleBackClick()}>
-                    <AiOutlineArrowLeft />
-                </div>
-                <div className="teams">
-                    <p>Jagiellonia Białystok - Legia Warszawa</p>
-                </div>
-            </nav>
-            <div className="summary">
-                <div className="date">
-                    <p>Koniec, 09.12.2021</p>
-                </div>
-                <div className="score">
-                    <div className="first">
-                        <img
-                            src="https://jagiellonia.pl/wp-content/uploads/2021/11/Herb_Jagiellonii.png"
-                            alt=""
-                        />
-                        <p>Jagiellonia Białystok</p>
-                    </div>
-                    <p>1</p>
-                    <p>-</p>
-                    <p>1</p>
-                    <div className="second">
-                        <img
-                            src="https://www.logofootball.net/wp-content/uploads/Legia-Warszawa-FC-Logo.png"
-                            alt=""
-                        />
-                        <p>Legia Warszawa</p>
-                    </div>
-                </div>
-                <nav className="menuOptions">
+            {loaded ? (
+                <nav className="backNavigation">
                     <div
-                        className="statistics"
-                        onClick={() => handleOptionClick("statistics")}
+                        className="backButton"
+                        onClick={() => handleBackClick()}
                     >
-                        STATYSTYKI
+                        <AiOutlineArrowLeft />
                     </div>
-                    <div
-                        className="squads"
-                        onClick={() => handleOptionClick("squads")}
-                    >
-                        SKŁADY
+                    <div className="teams">
+                        <p>
+                            {highlight[0][1]} - {highlight[0][6]}
+                        </p>
                     </div>
                 </nav>
-                {statistics ? (
-                    <div className="statisticsOption">
-                        <div className="statistic">
-                            <p>Jagiellonia</p>
-                            <p>Statystyki</p>
-                            <p>Legia</p>
+            ) : null}
+            {loaded ? (
+                <div className="summary">
+                    <div className="date">
+                        <p>Koniec, 09.12.2021</p>
+                    </div>
+                    <div className="score">
+                        <div className="first">
+                            <img
+                                src="https://media.discordapp.net/attachments/905055655860256861/920480540388392960/football-club.png"
+                                alt=""
+                            />
+                            <p>{highlight[0][1]}</p>
                         </div>
-                        <div className="statistic">
-                            <p>15</p>
-                            <p>Strzały</p>
-                            <p>9</p>
-                        </div>
-                        <div className="statistic">
-                            <p>4</p>
-                            <p>Strzały na bramkę</p>
-                            <p>6</p>
-                        </div>
-                        <div className="statistic">
-                            <p>32%</p>
-                            <p>Posiadanie piłki</p>
-                            <p>68%</p>
-                        </div>
-                        <div className="statistic">
-                            <p>297</p>
-                            <p>Podania</p>
-                            <p>610</p>
-                        </div>
-                        <div className="statistic">
-                            <p>62%</p>
-                            <p>Celność podań</p>
-                            <p>79%</p>
-                        </div>
-                        <div className="statistic">
-                            <p>10</p>
-                            <p>Faule</p>
-                            <p>7</p>
-                        </div>
-                        <div className="statistic">
-                            <p>0</p>
-                            <p>Żółte kartki</p>
-                            <p>0</p>
-                        </div>
-                        <div className="statistic">
-                            <p>0</p>
-                            <p>Czerwone kartki</p>
-                            <p>0</p>
-                        </div>
-                        <div className="statistic">
-                            <p>2</p>
-                            <p>Spalone</p>
-                            <p>2</p>
-                        </div>
-                        <div className="statistic">
-                            <p>5</p>
-                            <p>Rzuty rożne</p>
-                            <p>4</p>
+                        <p>{highlight[0][2]}</p>
+                        <p>-</p>
+                        <p>{highlight[0][7]}</p>
+                        <div className="second">
+                            <img
+                                src="https://media.discordapp.net/attachments/905055655860256861/920480540388392960/football-club.png"
+                                alt=""
+                            />
+                            <p>{highlight[0][6]}</p>
                         </div>
                     </div>
-                ) : null}
-                {squads ? (
-                    <div className="squadsOption">
+                    <nav className="menuOptions">
                         <div
-                            className="firstSquadButton"
-                            onClick={() => handleSquadClick("first")}
+                            className="statistics"
+                            onClick={() => handleOptionClick("statistics")}
                         >
-                            Jagiellonia Białystok
+                            STATYSTYKI
                         </div>
-                        {firstSquad ? (
-                            <div>
-                                {playersJagiellonia.map((player) => (
-                                    <PlayerElement
-                                        name={player.name}
-                                        surname={player.surname}
-                                        image={player.image}
-                                        from={"highlight"}
-                                    />
-                                ))}
-                            </div>
-                        ) : null}
                         <div
-                            className="secondSquadButton"
-                            onClick={() => handleSquadClick("second")}
+                            className="squads"
+                            onClick={() => handleOptionClick("squads")}
                         >
-                            Legia Warszawa
+                            SKŁADY
                         </div>
-                        {secondSquad ? (
-                            <div>
-                                {playersLegia.map((player) => (
-                                    <PlayerElement
-                                        name={player.name}
-                                        surname={player.surname}
-                                        image={player.image}
-                                    />
-                                ))}
+                    </nav>
+                    {statistics ? (
+                        <div className="statisticsOption">
+                            <div className="statistic">
+                                <p>{highlight[0][1]}</p>
+                                <p>Statystyki</p>
+                                <p>{highlight[0][6]}</p>
                             </div>
-                        ) : null}
-                    </div>
-                ) : null}
-            </div>
+                            <div className="statistic">
+                                <p>{highlight[0][3]}</p>
+                                <p>Strzały</p>
+                                <p>{highlight[0][8]}</p>
+                            </div>
+                            <div className="statistic">
+                                <p>{highlight[0][4]}%</p>
+                                <p>Posiadanie piłki</p>
+                                <p>{highlight[0][9]}%</p>
+                            </div>
+                            <div className="statistic">
+                                <p>{highlight[0][5]}</p>
+                                <p>Podania</p>
+                                <p>{highlight[0][10]}</p>
+                            </div>
+                        </div>
+                    ) : null}
+                    {squads ? (
+                        <div className="squadsOption">
+                            <div
+                                className="firstSquadButton"
+                                onClick={() => handleSquadClick("first")}
+                            >
+                                {highlight[0][1]}
+                            </div>
+                            {firstSquad ? (
+                                <div>
+                                    {playersHost.map((player) => (
+                                        <PlayerElement
+                                            id={player[2]}
+                                            name={player[3]}
+                                            surname={player[4]}
+                                        />
+                                    ))}
+                                </div>
+                            ) : null}
+                            <div
+                                className="secondSquadButton"
+                                onClick={() => handleSquadClick("second")}
+                            >
+                                {highlight[0][6]}
+                            </div>
+                            {secondSquad ? (
+                                <div>
+                                    {playersGuest.map((player) => (
+                                        <PlayerElement
+                                            id={player[2]}
+                                            name={player[3]}
+                                            surname={player[4]}
+                                        />
+                                    ))}
+                                </div>
+                            ) : null}
+                        </div>
+                    ) : null}
+                </div>
+            ) : null}
         </div>
     );
 };
