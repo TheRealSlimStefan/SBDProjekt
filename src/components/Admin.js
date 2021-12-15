@@ -7,16 +7,22 @@ const Admin = () => {
     const [nationality, setNationality] = useState("");
     const [position, setPosition] = useState("");
     const [age, setAge] = useState("");
+    const [assists, setAssists] = useState("");
     const [goals, setGoals] = useState("");
     const [shots, setShots] = useState("");
     const [shotsOnTarget, setShotsOnTarget] = useState("");
     const [yellowCards, setYellowCards] = useState("");
     const [redCards, setRedCards] = useState("");
+    const [clubId, setClubId] = useState("");
 
     const [soccerClubName, setSoccerClubName] = useState("");
     const [winnings, setWinnings] = useState("");
     const [draws, setDraws] = useState("");
     const [loses, setLoses] = useState("");
+
+    function handleClubIdChange(e) {
+        setClubId(e.target.value);
+    }
 
     function handleNameChange(e) {
         setName(e.target.value);
@@ -36,6 +42,10 @@ const Admin = () => {
 
     function handleAgeChange(e) {
         setAge(e.target.value);
+    }
+
+    function handleAssistsChange(e) {
+        setAssists(e.target.value);
     }
 
     function handleGoalsChange(e) {
@@ -76,10 +86,12 @@ const Admin = () => {
 
     function addPlayer() {
         const player = {
+            clubId,
             name,
             surname,
             nationality,
             position,
+            assists,
             age,
             goals,
             shots,
@@ -88,7 +100,7 @@ const Admin = () => {
             redCards,
         };
 
-        fetch("http://localhost:3001/admin", {
+        fetch("http://localhost:3001/addPlayer", {
             method: "POST", // or 'PUT'
             headers: {
                 "content-type": "application/json",
@@ -131,6 +143,12 @@ const Admin = () => {
             <div className="player">
                 <button onClick={() => addPlayer()}>Dodaj piłkarza</button>
                 <input
+                    onChange={(e) => handleClubIdChange(e)}
+                    value={clubId}
+                    type="number"
+                    placeholder="id_clubu..."
+                />
+                <input
                     onChange={(e) => handleNameChange(e)}
                     value={name}
                     type="text"
@@ -165,6 +183,12 @@ const Admin = () => {
                     value={goals}
                     type="number"
                     placeholder="gole..."
+                />
+                <input
+                    onChange={(e) => handleAssistsChange(e)}
+                    value={assists}
+                    type="number"
+                    placeholder="asysty..."
                 />
                 <input
                     onChange={(e) => handleShotsChange(e)}

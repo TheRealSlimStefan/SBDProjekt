@@ -1,7 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import mysql from "mysql";
 import oracledb from "oracledb";
 
 const config = {
@@ -45,7 +44,7 @@ app.get("/teams", (req, res) => {
     getTeams();
 });
 
-app.post("/admin", (req, res) => {
+app.post("/addPlayer", (req, res) => {
     console.log(req.body);
     async function getEmployee() {
         let conn;
@@ -53,12 +52,25 @@ app.post("/admin", (req, res) => {
         try {
             conn = await oracledb.getConnection(config);
 
+            let randomId = Math.floor(Math.random() * (100000 - 200 + 1)) + 200;
+
+            console.log(req.body);
+            console.log(req.body.clubId);
+            console.log(randomId);
+            console.log(req.body.age);
+            console.log(req.body.nationality);
+            console.log(req.body.position);
             console.log(req.body.name);
             console.log(req.body.surname);
+            console.log(req.body.goals);
+            console.log(req.body.assists);
+            console.log(req.body.shots);
+            console.log(req.body.shotsOnTarget);
+            console.log(req.body.yellowCards);
+            console.log(req.body.redCards);
 
             await conn.execute(
-                `INSERT INTO pracownicy (imie, nazwisko)
-                VALUES ('${req.body.name}', '${req.body.surname}')`,
+                `INSERT INTO Player VALUES (${randomId}, ${req.body.clubId}, ${req.body.age}, '${req.body.nationality}', '${req.body.position}', '${req.body.name}', '${req.body.surname}', ${req.body.goals}, ${req.body.assists}, ${req.body.shots}, ${req.body.shotsOnTarget}, ${req.body.yellowCards}, ${req.body.redCards})`,
                 [],
                 { autoCommit: true }
             );
