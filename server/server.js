@@ -218,6 +218,102 @@ app.get("/player/:id", (req, res) => {
     getPlayer();
 });
 
+app.get("/statistics/goals", (req, res) => {
+    async function getStatistics() {
+        let db;
+
+        try {
+            db = await oracledb.getConnection(config);
+
+            const result = await db.execute("SELECT ID_player, player_name, player_surname, goals FROM Player WHERE goals > 0 ORDER BY goals DESC");
+            console.log(result.rows);
+
+            res.send(result.rows);
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (db) {
+                // conn assignment worked, need to close
+                await db.close();
+            }
+        }
+    }
+
+    getStatistics();
+});
+
+app.get("/statistics/assists", (req, res) => {
+    async function getStatistics() {
+        let db;
+
+        try {
+            db = await oracledb.getConnection(config);
+
+            const result = await db.execute("SELECT ID_player, player_name, player_surname, assists FROM Player WHERE assists > 0 ORDER BY assists DESC");
+            console.log(result.rows);
+
+            res.send(result.rows);
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (db) {
+                // conn assignment worked, need to close
+                await db.close();
+            }
+        }
+    }
+
+    getStatistics();
+});
+
+app.get("/statistics/yellowcards", (req, res) => {
+    async function getStatistics() {
+        let db;
+
+        try {
+            db = await oracledb.getConnection(config);
+
+            const result = await db.execute("SELECT ID_player, player_name, player_surname, yellow_cards FROM Player WHERE yellow_cards > 0 ORDER BY yellow_cards DESC");
+            console.log(result.rows);
+
+            res.send(result.rows);
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (db) {
+                // conn assignment worked, need to close
+                await db.close();
+            }
+        }
+    }
+
+    getStatistics();
+});
+
+app.get("/statistics/redcards", (req, res) => {
+    async function getStatistics() {
+        let db;
+
+        try {
+            db = await oracledb.getConnection(config);
+
+            const result = await db.execute("SELECT ID_player, player_name, player_surname, red_cards FROM Player WHERE red_cards > 0 ORDER BY red_cards DESC");
+            console.log(result.rows);
+
+            res.send(result.rows);
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (db) {
+                // conn assignment worked, need to close
+                await db.close();
+            }
+        }
+    }
+
+    getStatistics();
+});
+
 app.post("/addPlayer", (req, res) => {
     console.log(req.body);
     async function addPlayer() {
