@@ -277,12 +277,13 @@ app.post("/addClub", (req, res) => {
             console.log(req.body);
             console.log(randomId);
             console.log(req.body.soccerClubName);
+            console.log(req.body.stadium);
             console.log(req.body.winnings);
             console.log(req.body.draws);
             console.log(req.body.losses);
 
             await conn.execute(
-                `INSERT INTO Football_Club VALUES (${randomId}, '${req.body.soccerClubName}', ${req.body.winnings}, ${req.body.draws}, ${req.body.losses})`,
+                `INSERT INTO Football_Club VALUES (${randomId}, ${req.body.stadium}, '${req.body.soccerClubName}', ${req.body.winnings}, ${req.body.draws}, ${req.body.losses})`,
                 [],
                 { autoCommit: true }
             );
@@ -300,6 +301,145 @@ app.post("/addClub", (req, res) => {
     }
 
     addClub();
+});
+
+app.post("/addCoach", (req, res) => {
+    console.log(req.body);
+    async function addCoach() {
+        let conn;
+
+        try {
+            conn = await oracledb.getConnection(config);
+
+            let randomId = Math.floor(Math.random() * (100000 - 200 + 1)) + 200;
+
+            console.log(req.body);
+            console.log(randomId);
+            console.log(req.body.coachClubId);
+            console.log(req.body.coachRole);
+            console.log(req.body.coachName);
+            console.log(req.body.coachSurname);
+
+            await conn.execute(
+                `Insert Into Coach Values (${randomId}, ${req.body.coachClubId}, '${req.body.coachRole}', '${req.body.coachName}', '${req.body.coachSurname}')`,
+                [],
+                { autoCommit: true }
+            );
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (conn) {
+                // conn assignment worked, need to close
+                await conn.close();
+            }
+        }
+    }
+
+    addCoach();
+});
+
+app.post("/addReferee", (req, res) => {
+    console.log(req.body);
+    async function addReferee() {
+        let conn;
+
+        try {
+            conn = await oracledb.getConnection(config);
+
+            let randomId = Math.floor(Math.random() * (100000 - 200 + 1)) + 200;
+
+            console.log(req.body);
+            console.log(randomId);
+            console.log(req.body.refereeRole);
+            console.log(req.body.refereeName);
+            console.log(req.body.refereeSurname);
+
+            await conn.execute(
+                `Insert Into Referee Values (${randomId}, '${req.body.refereeRole}', '${req.body.refereeName}', '${req.body.refereeSurname}')`,
+                [],
+                { autoCommit: true }
+            );
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (conn) {
+                // conn assignment worked, need to close
+                await conn.close();
+            }
+        }
+    }
+
+    addReferee();
+});
+
+app.post("/addStadium", (req, res) => {
+    console.log(req.body);
+    async function addStadium() {
+        let conn;
+
+        try {
+            conn = await oracledb.getConnection(config);
+
+            let randomId = Math.floor(Math.random() * (100000 - 200 + 1)) + 200;
+
+            console.log(req.body);
+            console.log(randomId);
+            console.log(req.body.stadiumName);
+            console.log(req.body.stadiumCity);
+
+            await conn.execute(
+                `Insert Into Stadium Values(${randomId}, '${req.body.stadiumName}', '${req.body.stadiumCity}')`,
+                [],
+                { autoCommit: true }
+            );
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (conn) {
+                // conn assignment worked, need to close
+                await conn.close();
+            }
+        }
+    }
+
+    addStadium();
+});
+
+app.post("/addMatch", (req, res) => {
+    console.log(req.body);
+    async function addMatch() {
+        let conn;
+
+        try {
+            conn = await oracledb.getConnection(config);
+
+            let randomId = Math.floor(Math.random() * (100000 - 200 + 1)) + 200;
+
+            console.log(req.body);
+            console.log(randomId);
+            console.log(req.body.matchHomeClubId);
+            console.log(req.body.matchAwayClubId);
+            console.log(req.body.matchTournamentId);
+            console.log(req.body.matchStadiumId);
+            console.log(req.body.matchHomeResult);
+            console.log(req.body.matchAwayResult);
+
+            await conn.execute(
+                `Insert Into Football_Match Values (${randomId}, ${req.body.matchHomeClubId}, ${req.body.matchAwayClubId}, ${req.body.matchTournamentId}, ${req.body.matchStadiumId}, '${req.body.matchHomeResult}', '${req.body.matchAwayResult}')`,
+                [],
+                { autoCommit: true }
+            );
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (conn) {
+                // conn assignment worked, need to close
+                await conn.close();
+            }
+        }
+    }
+
+    addMatch();
 });
 
 app.listen(3001, () => console.log("Server address http://localhost:3001"));

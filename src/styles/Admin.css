@@ -3,5 +3,9 @@
     width: 80%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+}
+
+.Admin > div {
+    padding: 30px;
+    width: 100%;
 }
