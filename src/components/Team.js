@@ -156,6 +156,7 @@ const Team = () => {
                     ? team.map((player) => {
                           return (
                               <TeamElement
+                                  id={player[5]}
                                   name={player[10]}
                                   surname={player[11]}
                                   image="https://cdn2.iconfinder.com/data/icons/soccer-players/100/color-24-512.png"

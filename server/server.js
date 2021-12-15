@@ -71,6 +71,33 @@ app.get("/team/:id", (req, res) => {
     getTeam();
 });
 
+app.get("/player/:id", (req, res) => {
+    console.log(req.params.id);
+    async function getPlayer() {
+        let db;
+
+        try {
+            db = await oracledb.getConnection(config);
+
+            const result = await db.execute(
+                `select * FROM Player where Player.ID_player = ${req.params.id}`
+            );
+
+            console.log(result);
+            res.send(result.rows);
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (db) {
+                // conn assignment worked, need to close
+                await db.close();
+            }
+        }
+    }
+
+    getPlayer();
+});
+
 app.post("/addPlayer", (req, res) => {
     console.log(req.body);
     async function addPlayer() {

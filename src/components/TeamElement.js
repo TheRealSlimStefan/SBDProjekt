@@ -1,7 +1,7 @@
 import "../styles/TeamElement.css";
 import { useNavigate } from "react-router-dom";
 
-const TeamElement = ({ name, surname, image }) => {
+const TeamElement = ({ id, name, surname, image }) => {
     const navigate = useNavigate();
 
     function handleTeamElementClick(id) {
@@ -9,7 +9,7 @@ const TeamElement = ({ name, surname, image }) => {
     }
 
     return (
-        <div className="TeamElement" onClick={() => handleTeamElementClick(1)}>
+        <div className="TeamElement" onClick={() => handleTeamElementClick(id)}>
             <img src={image} alt="" />
             <div className="teamName">
                 <p>{name}</p>
