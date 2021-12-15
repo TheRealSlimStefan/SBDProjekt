@@ -1,323 +1,73 @@
 import "../styles/Statistics.css";
 import { useNavigate } from "react-router-dom";
-
-const scorers = [
-    {
-        id: 5,
-        name: "imie4",
-        surname: "nazwisko4",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        goals: 11,
-    },
-
-    {
-        id: 5,
-        name: "imie5",
-        surname: "nazwisko5",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        goals: 8,
-    },
-
-    {
-        id: 1,
-        name: "Mateusz",
-        surname: "Hołownia",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        goals: 7,
-    },
-
-    {
-        id: 10,
-        name: "imie10",
-        surname: "nazwisko10",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        goals: 6,
-    },
-
-    {
-        id: 3,
-        name: "imie3",
-        surname: "nazwisko3",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        goals: 4,
-    },
-];
-
-const assisters = [
-    {
-        id: 10,
-        name: "imie10",
-        surname: "nazwisko10",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        assists: 14,
-    },
-
-    {
-        id: 5,
-        name: "imie5",
-        surname: "nazwisko5",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        assists: 11,
-    },
-
-    {
-        id: 3,
-        name: "imie3",
-        surname: "nazwisko3",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        assists: 4,
-    },
-
-    {
-        id: 5,
-        name: "imie4",
-        surname: "nazwisko4",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        assists: 4,
-    },
-
-    {
-        id: 8,
-        name: "imie8",
-        surname: "nazwisko8",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        assists: 4,
-    },
-];
-
-const yellowCards = [
-    {
-        id: 8,
-        name: "imie8",
-        surname: "nazwisko8",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        yellowCards: 8,
-    },
-
-    {
-        id: 6,
-        name: "imie6",
-        surname: "nazwisko6",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        yellowCards: 7,
-    },
-
-    {
-        id: 10,
-        name: "imie10",
-        surname: "nazwisko10",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        yellowCards: 7,
-    },
-
-    {
-        id: 2,
-        name: "imie2",
-        surname: "nazwisko2",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        yellowCards: 5,
-    },
-
-    {
-        id: 1,
-        name: "Mateusz",
-        surname: "Hołownia",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        yellowCards: 2,
-    },
-
-    {
-        id: 5,
-        name: "imie4",
-        surname: "nazwisko4",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        yellowCards: 2,
-    },
-
-    {
-        id: 7,
-        name: "imie7",
-        surname: "nazwisko7",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        yellowCards: 2,
-    },
-];
-
-const redCards = [
-    {
-        id: 10,
-        name: "imie10",
-        surname: "nazwisko10",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        redCards: 5,
-    },
-
-    {
-        id: 6,
-        name: "imie6",
-        surname: "nazwisko6",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        redCards: 4,
-    },
-
-    {
-        id: 2,
-        name: "imie2",
-        surname: "nazwisko2",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        redCards: 2,
-    },
-
-    {
-        id: 3,
-        name: "imie3",
-        surname: "nazwisko3",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        redCards: 1,
-    },
-
-    {
-        id: 5,
-        name: "imie4",
-        surname: "nazwisko4",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        redCards: 1,
-    },
-
-    {
-        id: 7,
-        name: "imie7",
-        surname: "nazwisko7",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        redCards: 1,
-    },
-
-    {
-        id: 8,
-        name: "imie8",
-        surname: "nazwisko8",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        redCards: 1,
-    },
-];
-
-const players = [
-    {
-        id: 1,
-        name: "Mateusz",
-        surname: "Hołownia",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        goals: 7,
-        assists: 1,
-        yellowCards: 2,
-        redCards: 0,
-    },
-
-    {
-        id: 2,
-        name: "imie2",
-        surname: "nazwisko2",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        goals: 1,
-        assists: 3,
-        yellowCards: 5,
-        redCards: 2,
-    },
-
-    {
-        id: 3,
-        name: "imie3",
-        surname: "nazwisko3",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        goals: 4,
-        assists: 4,
-        yellowCards: 0,
-        redCards: 1,
-    },
-
-    {
-        id: 5,
-        name: "imie4",
-        surname: "nazwisko4",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        goals: 11,
-        assists: 4,
-        yellowCards: 2,
-        redCards: 1,
-    },
-
-    {
-        id: 5,
-        name: "imie5",
-        surname: "nazwisko5",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        goals: 8,
-        assists: 11,
-        yellowCards: 0,
-        redCards: 0,
-    },
-
-    {
-        id: 6,
-        name: "imie6",
-        surname: "nazwisko6",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        goals: 0,
-        assists: 2,
-        yellowCards: 7,
-        redCards: 4,
-    },
-
-    {
-        id: 7,
-        name: "imie7",
-        surname: "nazwisko7",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        goals: 0,
-        assists: 1,
-        yellowCards: 2,
-        redCards: 1,
-    },
-
-    {
-        id: 8,
-        name: "imie8",
-        surname: "nazwisko8",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        goals: 1,
-        assists: 4,
-        yellowCards: 8,
-        redCards: 1,
-    },
-
-    {
-        id: 9,
-        name: "imie9",
-        surname: "nazwisko9",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        goals: 1,
-        assists: 1,
-        yellowCards: 1,
-        redCards: 0,
-    },
-
-    {
-        id: 10,
-        name: "imie10",
-        surname: "nazwisko10",
-        image: "https://cdn.legia.com/variants/a3cutnaHreuEKqdSYWt2P22Q/545c15e9cca6f06af6246aeb5cf03b7aca3451e6443595cf6ef7e6b628d6481e.png",
-        goals: 6,
-        assists: 14,
-        yellowCards: 7,
-        redCards: 5,
-    },
-];
+import { useEffect, useState } from "react";
 
 const Statistics = () => {
     const navigate = useNavigate();
+    const [scorers, setScorers] = useState([]);
+    const [assisters, setAssisters] = useState([]);
+    const [yellowCards, setYellowCards] = useState([]);
+    const [redCards, setRedCards] = useState([]);
 
     function handleStatisticsElementClick(id) {
         navigate(`/player/${id}`, { state: { id: id } });
+    }
+
+    useEffect(() => {
+        const createList = (data) => {
+            let temp = data;
+
+            for (let i = 5; i < temp.length; i++) {
+                if (temp[i][3] === temp[i - 1][3]) {
+                    continue;
+                }
+                else {
+                    temp.splice(i, temp.length - i)
+                    break;
+                }
+            }
+
+            return temp;
+        }
+
+        const fetchData = async () => {
+            const responseGoals = await fetch("http://localhost:3001/statistics/goals");
+            const bodyGoals = await responseGoals.json();
+
+            const responseAssists = await fetch("http://localhost:3001/statistics/assists");
+            const bodyAssists = await responseAssists.json();
+
+            const responseYellowCards = await fetch("http://localhost:3001/statistics/yellowcards");
+            const bodyYellowCards = await responseYellowCards.json();
+
+            const responseRedCards = await fetch("http://localhost:3001/statistics/redcards");
+            const bodyRedCards = await responseRedCards.json();
+
+            setScorers(createList(bodyGoals));
+            setAssisters(createList(bodyAssists));
+            setYellowCards(createList(bodyYellowCards));
+            setRedCards(createList(bodyRedCards));
+        }
+        fetchData();
+    }, [])
+
+    function createRankingTable(data) {
+        return data.map((player, key) => {
+            return (
+                <tr
+                    className="statisticsElement"
+                    onClick={() =>
+                        handleStatisticsElementClick(player[0])
+                    }
+                >
+                    <td class="statisticsPosition">{key + 1}</td>
+                    <td class="statisticsName">
+                        {player[1] + " " + player[2]}
+                    </td>
+                    <td class="statisticsValue">{player[3]}</td>
+                </tr>
+            );
+        })
     }
 
     return (
@@ -329,22 +79,7 @@ const Statistics = () => {
                     <th>Zawodnik</th>
                     <th>Gole</th>
                 </tr>
-                {scorers.map((player, key) => {
-                    return (
-                        <tr
-                            className="statisticsElement"
-                            onClick={() =>
-                                handleStatisticsElementClick(player.id)
-                            }
-                        >
-                            <td class="statisticsPosition">{key + 1}</td>
-                            <td class="statisticsName">
-                                {player.name + " " + player.surname}
-                            </td>
-                            <td class="statisticsValue">{player.goals}</td>
-                        </tr>
-                    );
-                })}
+                {createRankingTable(scorers)}
             </table>
 
             <p>Asysty</p>
@@ -354,22 +89,7 @@ const Statistics = () => {
                     <th>Zawodnik</th>
                     <th>Asysty</th>
                 </tr>
-                {assisters.map((player, key) => {
-                    return (
-                        <tr
-                            className="statisticsElement"
-                            onClick={() =>
-                                handleStatisticsElementClick(player.id)
-                            }
-                        >
-                            <td class="statisticsPosition">{key + 1}</td>
-                            <td class="statisticsName">
-                                {player.name + " " + player.surname}
-                            </td>
-                            <td class="statisticsValue">{player.assists}</td>
-                        </tr>
-                    );
-                })}
+                {createRankingTable(assisters)}
             </table>
 
             <p>Żółte kartki</p>
@@ -379,24 +99,7 @@ const Statistics = () => {
                     <th>Zawodnik</th>
                     <th>Żółte kartki</th>
                 </tr>
-                {yellowCards.map((player, key) => {
-                    return (
-                        <tr
-                            className="statisticsElement"
-                            onClick={() =>
-                                handleStatisticsElementClick(player.id)
-                            }
-                        >
-                            <td class="statisticsPosition">{key + 1}</td>
-                            <td class="statisticsName">
-                                {player.name + " " + player.surname}
-                            </td>
-                            <td class="statisticsValue">
-                                {player.yellowCards}
-                            </td>
-                        </tr>
-                    );
-                })}
+                {createRankingTable(yellowCards)}
             </table>
 
             <p>Czerwone kartki</p>
@@ -406,22 +109,7 @@ const Statistics = () => {
                     <th>Zawodnik</th>
                     <th>Czerwone kartki</th>
                 </tr>
-                {redCards.map((player, key) => {
-                    return (
-                        <tr
-                            className="statisticsElement"
-                            onClick={() =>
-                                handleStatisticsElementClick(player.id)
-                            }
-                        >
-                            <td class="statisticsPosition">{key + 1}</td>
-                            <td class="statisticsName">
-                                {player.name + " " + player.surname}
-                            </td>
-                            <td class="statisticsValue">{player.redCards}</td>
-                        </tr>
-                    );
-                })}
+                {createRankingTable(redCards)}
             </table>
         </div>
     );
