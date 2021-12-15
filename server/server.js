@@ -44,6 +44,33 @@ app.get("/teams", (req, res) => {
     getTeams();
 });
 
+app.get("/team/:id", (req, res) => {
+    console.log(req.params.id);
+    async function getTeam() {
+        let db;
+
+        try {
+            db = await oracledb.getConnection(config);
+
+            const result = await db.execute(
+                `select * from football_club, Player where Player.ID_club = Football_club.ID_club and Football_club.ID_club = ${req.params.id}`
+            );
+
+            console.log(result);
+            res.send(result.rows);
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (db) {
+                // conn assignment worked, need to close
+                await db.close();
+            }
+        }
+    }
+
+    getTeam();
+});
+
 app.post("/addPlayer", (req, res) => {
     console.log(req.body);
     async function addPlayer() {
