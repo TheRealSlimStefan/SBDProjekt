@@ -11,9 +11,9 @@ const Highlight = () => {
     const [highlight, setHighlight] = useState([]);
     const [loaded, setLoaded] = useState(false);
     const [playersHost, setPlayersHost] = useState([]);
-    // const [loadedHost, setLoadedHost] = useState(false);
+    const [loadedHost, setLoadedHost] = useState(false);
     const [playersGuest, setPlayersGuest] = useState([]);
-    // const [loadedGuest, setLoadedGuest] = useState(false);
+    const [loadedGuest, setLoadedGuest] = useState(false);
 
     const [statistics, setStatistics] = useState(true);
     const [squads, setSquads] = useState(false);
