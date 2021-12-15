@@ -2,68 +2,6 @@ import "../styles/Teams.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-// const teams = [
-//     {
-//         id: 1,
-//         name: "Jagiellonia Białystok",
-//     },
-
-//     {
-//         id: 2,
-//         name: "Arka Gdynia",
-//     },
-
-//     {
-//         id: 3,
-//         name: "Znicz Pruszków",
-//     },
-
-//     {
-//         id: 4,
-//         name: "Lech Poznań",
-//     },
-
-//     {
-//         id: 5,
-//         name: "Legia Warszawa",
-//     },
-
-//     {
-//         id: 5,
-//         name: "Legia Warszawa",
-//     },
-
-//     {
-//         id: 5,
-//         name: "Legia Warszawa",
-//     },
-
-//     {
-//         id: 5,
-//         name: "Legia Warszawa",
-//     },
-
-//     {
-//         id: 5,
-//         name: "Legia Warszawa",
-//     },
-
-//     {
-//         id: 5,
-//         name: "Legia Warszawa",
-//     },
-
-//     {
-//         id: 5,
-//         name: "Legia Warszawa",
-//     },
-
-//     {
-//         id: 5,
-//         name: "Legia Warszawa",
-//     },
-// ];
-
 const Teams = () => {
     const navigate = useNavigate();
     const [teams, setTeams] = useState([]);
@@ -98,7 +36,7 @@ const Teams = () => {
                                   alt=""
                               />
                               <div className="teamName">
-                                  <p>{team[1]}</p>
+                                  <p>{team[2]}</p>
                               </div>
                           </div>
                       );

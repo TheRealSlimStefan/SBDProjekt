@@ -6,119 +6,6 @@ import Player from "./Player";
 import TeamElement from "./TeamElement";
 import { useParams } from "react-router-dom";
 
-const playersJagiellonia = [
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-    {
-        name: "Przemysław",
-        surname: "Frankowski",
-        image: "https://cdn.sofifa.net/players/212/138/18_360.png",
-    },
-];
-
 const Team = () => {
     const { id } = useParams();
     const [team, setTeam] = useState([]);
@@ -147,18 +34,20 @@ const Team = () => {
                 <div className="backButton" onClick={() => handleBackClick()}>
                     <AiOutlineArrowLeft />
                 </div>
-                <div className="team">
-                    <p>Jagielonia Białystok</p>
-                </div>
+                {loaded ? (
+                    <div className="team">
+                        <p>{team[0][2]}</p>
+                    </div>
+                ) : null}
             </nav>
             <div className="teamElements">
                 {loaded
                     ? team.map((player) => {
                           return (
                               <TeamElement
-                                  id={player[5]}
-                                  name={player[10]}
-                                  surname={player[11]}
+                                  id={player[6]}
+                                  name={player[11]}
+                                  surname={player[12]}
                                   image="https://cdn2.iconfinder.com/data/icons/soccer-players/100/color-24-512.png"
                               />
                           );
