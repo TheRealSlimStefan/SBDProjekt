@@ -225,7 +225,9 @@ app.get("/statistics/goals", (req, res) => {
         try {
             db = await oracledb.getConnection(config);
 
-            const result = await db.execute("SELECT ID_player, player_name, player_surname, goals FROM Player WHERE goals > 0 ORDER BY goals DESC");
+            const result = await db.execute(
+                "SELECT ID_player, player_name, player_surname, goals FROM Player WHERE goals > 0 ORDER BY goals DESC"
+            );
             console.log(result.rows);
 
             res.send(result.rows);
@@ -249,7 +251,9 @@ app.get("/statistics/assists", (req, res) => {
         try {
             db = await oracledb.getConnection(config);
 
-            const result = await db.execute("SELECT ID_player, player_name, player_surname, assists FROM Player WHERE assists > 0 ORDER BY assists DESC");
+            const result = await db.execute(
+                "SELECT ID_player, player_name, player_surname, assists FROM Player WHERE assists > 0 ORDER BY assists DESC"
+            );
             console.log(result.rows);
 
             res.send(result.rows);
@@ -273,7 +277,9 @@ app.get("/statistics/yellowcards", (req, res) => {
         try {
             db = await oracledb.getConnection(config);
 
-            const result = await db.execute("SELECT ID_player, player_name, player_surname, yellow_cards FROM Player WHERE yellow_cards > 0 ORDER BY yellow_cards DESC");
+            const result = await db.execute(
+                "SELECT ID_player, player_name, player_surname, yellow_cards FROM Player WHERE yellow_cards > 0 ORDER BY yellow_cards DESC"
+            );
             console.log(result.rows);
 
             res.send(result.rows);
@@ -297,7 +303,9 @@ app.get("/statistics/redcards", (req, res) => {
         try {
             db = await oracledb.getConnection(config);
 
-            const result = await db.execute("SELECT ID_player, player_name, player_surname, red_cards FROM Player WHERE red_cards > 0 ORDER BY red_cards DESC");
+            const result = await db.execute(
+                "SELECT ID_player, player_name, player_surname, red_cards FROM Player WHERE red_cards > 0 ORDER BY red_cards DESC"
+            );
             console.log(result.rows);
 
             res.send(result.rows);
@@ -519,9 +527,23 @@ app.post("/addMatch", (req, res) => {
             console.log(req.body.matchStadiumId);
             console.log(req.body.matchHomeResult);
             console.log(req.body.matchAwayResult);
+            console.log(req.body.matchStatisticsHostGoals);
+            console.log(req.body.matchStatisticsHostShots);
+            console.log(req.body.matchStatisticsHostPossession);
+            console.log(req.body.matchStatisticsHostPasses);
+            console.log(req.body.matchStatisticsGuestGoals);
+            console.log(req.body.matchStatisticsGuestShots);
+            console.log(req.body.matchStatisticsGuestPossession);
+            console.log(req.body.matchStatisticsGuestPasses);
 
             await conn.execute(
                 `Insert Into Football_Match Values (${randomId}, ${req.body.matchHomeClubId}, ${req.body.matchAwayClubId}, ${req.body.matchTournamentId}, ${req.body.matchStadiumId}, '${req.body.matchHomeResult}', '${req.body.matchAwayResult}')`,
+                [],
+                { autoCommit: true }
+            );
+
+            await conn.execute(
+                `Insert Into Match_Statistics Values(${randomId}, ${req.body.matchStatisticsHostGoals}, ${req.body.matchStatisticsGuestGoals}, ${req.body.matchStatisticsHostShots}, ${req.body.matchStatisticsHostShots}, ${req.body.matchStatisticsHostPossession}, ${req.body.matchStatisticsGuestPossession}, ${req.body.matchStatisticsHostPasses}, ${req.body.matchStatisticsGuestPasses})`,
                 [],
                 { autoCommit: true }
             );
@@ -536,6 +558,64 @@ app.post("/addMatch", (req, res) => {
     }
 
     addMatch();
+});
+
+app.post("/removeMatch", (req, res) => {
+    console.log(req.body);
+    async function removeMatch() {
+        let conn;
+
+        try {
+            conn = await oracledb.getConnection(config);
+
+            await conn.execute(
+                `DELETE FROM Match_Statistics WHERE ID_match = ${req.body.matchId}`,
+                [],
+                { autoCommit: true }
+            );
+
+            await conn.execute(
+                `DELETE FROM Football_Match WHERE ID_match = ${req.body.matchId}`,
+                [],
+                { autoCommit: true }
+            );
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (conn) {
+                // conn assignment worked, need to close
+                await conn.close();
+            }
+        }
+    }
+
+    removeMatch();
+});
+
+app.post("/removePlayer", (req, res) => {
+    console.log(req.body);
+    async function removeStadium() {
+        let conn;
+
+        try {
+            conn = await oracledb.getConnection(config);
+
+            await conn.execute(
+                `DELETE FROM Player WHERE ID_player = ${req.body.playerId}`,
+                [],
+                { autoCommit: true }
+            );
+        } catch (err) {
+            console.log("Ouch!", err);
+        } finally {
+            if (conn) {
+                // conn assignment worked, need to close
+                await conn.close();
+            }
+        }
+    }
+
+    removeStadium();
 });
 
 app.listen(3001, () => console.log("Server address http://localhost:3001"));

@@ -40,6 +40,62 @@ const Admin = () => {
     const [matchHomeResult, setMatchHomeResult] = useState("");
     const [matchAwayResult, setMatchAwayResult] = useState("");
 
+    const [matchStatisticsHostGoals, setMatchStatisticsHostGoals] =
+        useState("");
+    const [matchStatisticsHostShots, setMatchStatisticsHostShots] =
+        useState("");
+    const [matchStatisticsHostPossession, setMatchStatisticsHostPossession] =
+        useState("");
+    const [matchStatisticsHostPasses, setMatchStatisticsHostPasses] =
+        useState("");
+    const [matchStatisticsGuestGoals, setMatchStatisticsGuestGoals] =
+        useState("");
+    const [matchStatisticsGuestShots, setMatchStatisticsGuestShots] =
+        useState("");
+    const [matchStatisticsGuestPossession, setMatchStatisticsGuestPossession] =
+        useState("");
+    const [matchStatisticsGuestPasses, setMatchStatisticsGuestPasses] =
+        useState("");
+
+    const [matchId, setMatchId] = useState("");
+    const [playerId, setPlayerId] = useState("");
+
+    function handleRemovePlayerIdChange(e) {
+        setPlayerId(e.target.value);
+    }
+
+    function handleMatchStatisticsHostGoalsChange(e) {
+        setMatchStatisticsHostGoals(e.target.value);
+    }
+
+    function handleMatchStatisticsHostShotsChange(e) {
+        setMatchStatisticsHostShots(e.target.value);
+    }
+
+    function handleMatchStatisticsHostPossessionChange(e) {
+        setMatchStatisticsHostPossession(e.target.value);
+    }
+
+    function handleMatchStatisticsHostPassesChange(e) {
+        setMatchStatisticsHostPasses(e.target.value);
+    }
+
+    function handleMatchStatisticsGuestGoalsChange(e) {
+        setMatchStatisticsGuestGoals(e.target.value);
+    }
+
+    function handleMatchStatisticsGuestShotsChange(e) {
+        setMatchStatisticsGuestShots(e.target.value);
+    }
+
+    function handleMatchStatisticsGuestPossessionChange(e) {
+        setMatchStatisticsGuestPossession(e.target.value);
+    }
+
+    function handleMatchStatisticsGuestPassesChange(e) {
+        setMatchStatisticsGuestPasses(e.target.value);
+    }
+
     function handleMatchHomeClubIdChange(e) {
         setMatchHomeClubId(e.target.value);
     }
@@ -166,6 +222,10 @@ const Admin = () => {
 
     function handleLossesChange(e) {
         setLosses(e.target.value);
+    }
+
+    function handleRemoveMatchChange(e) {
+        setMatchId(e.target.value);
     }
 
     function addPlayer() {
@@ -300,6 +360,14 @@ const Admin = () => {
             matchStadiumId,
             matchHomeResult,
             matchAwayResult,
+            matchStatisticsHostGoals,
+            matchStatisticsHostShots,
+            matchStatisticsHostPossession,
+            matchStatisticsHostPasses,
+            matchStatisticsGuestGoals,
+            matchStatisticsGuestShots,
+            matchStatisticsGuestPossession,
+            matchStatisticsGuestPasses,
         };
 
         fetch("http://localhost:3001/addMatch", {
@@ -309,6 +377,48 @@ const Admin = () => {
                 Accept: "application/json",
             },
             body: JSON.stringify(match),
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    }
+
+    function removeMatch() {
+        const match = {
+            matchId,
+        };
+
+        fetch("http://localhost:3001/removeMatch", {
+            method: "POST", // or 'PUT'
+            headers: {
+                "content-type": "application/json",
+                Accept: "application/json",
+            },
+            body: JSON.stringify(match),
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    }
+
+    function removePlayer() {
+        const player = {
+            playerId,
+        };
+
+        fetch("http://localhost:3001/removePlayer", {
+            method: "POST", // or 'PUT'
+            headers: {
+                "content-type": "application/json",
+                Accept: "application/json",
+            },
+            body: JSON.stringify(player),
         })
             .then((response) => {
                 return response.json();
@@ -360,6 +470,85 @@ const Admin = () => {
                         value={matchAwayResult}
                         type="text"
                         placeholder="wynik drużyny gości..."
+                    />
+
+                    <input
+                        onChange={(e) =>
+                            handleMatchStatisticsHostGoalsChange(e)
+                        }
+                        value={matchStatisticsHostGoals}
+                        type="text"
+                        placeholder="gole gospodarze..."
+                    />
+                    <input
+                        onChange={(e) =>
+                            handleMatchStatisticsHostShotsChange(e)
+                        }
+                        value={matchStatisticsHostShots}
+                        type="text"
+                        placeholder="strzały gospodarze..."
+                    />
+                    <input
+                        onChange={(e) =>
+                            handleMatchStatisticsHostPassesChange(e)
+                        }
+                        value={matchStatisticsHostPasses}
+                        type="text"
+                        placeholder="podania gospodarze..."
+                    />
+                    <input
+                        onChange={(e) =>
+                            handleMatchStatisticsHostPossessionChange(e)
+                        }
+                        value={matchStatisticsHostPossession}
+                        type="text"
+                        placeholder="posiadanie piłki gospodarze..."
+                    />
+
+                    <input
+                        onChange={(e) =>
+                            handleMatchStatisticsGuestGoalsChange(e)
+                        }
+                        value={matchStatisticsGuestGoals}
+                        type="text"
+                        placeholder="gole goście..."
+                    />
+                    <input
+                        onChange={(e) =>
+                            handleMatchStatisticsGuestShotsChange(e)
+                        }
+                        value={matchStatisticsGuestShots}
+                        type="text"
+                        placeholder="strzały goście..."
+                    />
+                    <input
+                        onChange={(e) =>
+                            handleMatchStatisticsGuestPassesChange(e)
+                        }
+                        value={matchStatisticsGuestPasses}
+                        type="text"
+                        placeholder="podania goście..."
+                    />
+                    <input
+                        onChange={(e) =>
+                            handleMatchStatisticsGuestPossessionChange(e)
+                        }
+                        value={matchStatisticsGuestPossession}
+                        type="text"
+                        placeholder="posiadanie piłki goście..."
+                    />
+                </div>
+            </div>
+            <div className="removeMatch">
+                <div className="buttonContainer">
+                    <button onClick={() => removeMatch()}>Usuń mecz</button>
+                </div>
+                <div className="inputsContainer">
+                    <input
+                        onChange={(e) => handleRemoveMatchChange(e)}
+                        value={matchId}
+                        type="number"
+                        placeholder="id meczu do usuniecia..."
                     />
                 </div>
             </div>
@@ -439,6 +628,21 @@ const Admin = () => {
                         value={redCards}
                         type="number"
                         placeholder="czerwone karki..."
+                    />
+                </div>
+            </div>
+            <div className="removePlayer">
+                <div className="buttonContainer">
+                    <button onClick={() => removePlayer()}>
+                        Usuń piłkarza
+                    </button>
+                </div>
+                <div className="inputsContainer">
+                    <input
+                        onChange={(e) => handleRemovePlayerIdChange(e)}
+                        value={playerId}
+                        type="number"
+                        placeholder="id piłkarza..."
                     />
                 </div>
             </div>
@@ -535,7 +739,7 @@ const Admin = () => {
                     />
                 </div>
             </div>
-            <div className="referee">
+            <div className="stadium">
                 <div className="buttonContainer">
                     <button onClick={() => addStadium()}>Dodaj stadion</button>
                 </div>

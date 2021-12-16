@@ -22,6 +22,7 @@ const Team = () => {
             const response = await fetch(`http://localhost:3001/team/${id}`);
             const body = await response.json();
             setTeam(body);
+            if (body.length === 0) navigate(`/teams`);
             console.log(body);
             setLoaded(true);
         };
